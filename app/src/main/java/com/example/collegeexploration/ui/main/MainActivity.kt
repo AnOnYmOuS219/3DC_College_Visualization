@@ -5,21 +5,24 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.collegeexploration.MvpApp
 import com.example.collegeexploration.R
-import com.example.collegeexploration.ui.main.fragments.ARFragment
-import com.example.collegeexploration.ui.main.fragments.VRFragment
+import com.example.collegeexploration.data.DataManager
+import com.example.collegeexploration.ui.ar.ARFragment
+import com.example.collegeexploration.ui.vr.VRFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), MainMvpView{
 
     private lateinit var mARVRBottomNavigationView: BottomNavigationView
     private lateinit var mPresenter: MainPresenter<MainMvpView>
+    private lateinit var mDataManager: DataManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         var mvpApp: MvpApp = applicationContext as MvpApp
-        mPresenter = MainPresenter(mvpApp.getDataManager())
+        mDataManager = mvpApp.getDataManager()
+        mPresenter = MainPresenter(mDataManager)
         mPresenter.onAttachView(this)
 
         supportFragmentManager.beginTransaction().apply {
@@ -37,7 +40,7 @@ class MainActivity : AppCompatActivity(), MainMvpView{
 
     override fun changeFragment(itemId: Int) {
 
-        var fragment: Fragment = if(itemId == R.id.item_ar) ARFragment() else VRFragment()
+        var fragment: Fragment = if(itemId == R.id.item_ar) ARFragment() else VRFragment(mDataManager)
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.frame_fragment, fragment)
             addToBackStack(null)
