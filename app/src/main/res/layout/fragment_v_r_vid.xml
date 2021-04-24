@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.VRVidFragment">
+    tools:context=".ui.vrvid.VRVidFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_vrvid"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="VR Vid Fragment" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

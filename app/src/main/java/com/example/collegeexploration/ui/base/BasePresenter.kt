@@ -9,4 +9,8 @@ open class BasePresenter<V: MvpView>(val mDataManager: DataManager) : MvpPresent
     override fun onAttachView(view: V) {
         this.mView = view
     }
+
+    fun getMvpView(): V{
+        return mView
+    }
 }

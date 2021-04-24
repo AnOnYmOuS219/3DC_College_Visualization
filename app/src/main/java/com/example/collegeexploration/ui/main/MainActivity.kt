@@ -6,9 +6,13 @@ import androidx.fragment.app.Fragment
 import com.example.collegeexploration.MvpApp
 import com.example.collegeexploration.R
 import com.example.collegeexploration.data.DataManager
+import com.example.collegeexploration.events.VREvent
+import com.example.collegeexploration.ui.VRViewFragment
 import com.example.collegeexploration.ui.ar.ARFragment
 import com.example.collegeexploration.ui.vr.VRFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 class MainActivity : AppCompatActivity(), MainMvpView{
 
@@ -24,6 +28,8 @@ class MainActivity : AppCompatActivity(), MainMvpView{
         mDataManager = mvpApp.getDataManager()
         mPresenter = MainPresenter(mDataManager)
         mPresenter.onAttachView(this)
+
+        EventBus.getDefault().register(this)
 
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.frame_fragment, ARFragment())
@@ -46,5 +52,18 @@ class MainActivity : AppCompatActivity(), MainMvpView{
             addToBackStack(null)
             commit()
         }
+    }
+
+    @Subscribe
+    fun handleVREvent(vrEvent: VREvent){
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.frame_fragment, VRViewFragment(vrEvent.mediaItem.mediaId))
+            commit()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 }

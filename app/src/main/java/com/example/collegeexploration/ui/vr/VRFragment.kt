@@ -11,7 +11,7 @@ import com.example.collegeexploration.data.DataManager
 import com.example.collegeexploration.ui.vr.vrutils.FragmentAdapter
 import com.google.android.material.tabs.TabLayout
 
-class VRFragment(val mDataManager: DataManager) : Fragment(), VRMvpView {
+class VRFragment(val mDataManager: DataManager) : Fragment(R.layout.fragment_v_r), VRMvpView {
 
     private lateinit var mPresenter: VRMvpPresenter<VRMvpView>
     private lateinit var mTabLayout: TabLayout
@@ -23,14 +23,6 @@ class VRFragment(val mDataManager: DataManager) : Fragment(), VRMvpView {
         mPresenter = VRPresenter(mDataManager)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_v_r, container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mPresenter.onAttachView(this)
@@ -38,7 +30,7 @@ class VRFragment(val mDataManager: DataManager) : Fragment(), VRMvpView {
         mTabLayout = view.findViewById(R.id.tab_layout)
         mViewPager2 = view.findViewById(R.id.view_pager2)
 
-        mFragmentAdapter = FragmentAdapter(fragmentManager, lifecycle)
+        mFragmentAdapter = FragmentAdapter(fragmentManager, lifecycle, mDataManager)
         mViewPager2.adapter = mFragmentAdapter
 
         registerViewPages(mTabLayout, mViewPager2)
