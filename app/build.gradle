@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.collegeexploration"
-        minSdkVersion 19
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -33,6 +33,8 @@ android {
 }
 
 dependencies {
+
+    api project(":sceneformux")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'

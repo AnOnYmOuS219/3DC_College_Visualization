@@ -5,19 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.collegeexploration.R
 import com.example.collegeexploration.data.DataManager
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.collegeexploration.ui.vr.vrutils.FragmentAdapter
 import com.google.android.material.tabs.TabLayout
 
 class VRFragment(val mDataManager: DataManager) : Fragment(), VRMvpView {
 
     private lateinit var mPresenter: VRMvpPresenter<VRMvpView>
-//    private lateinit var mRecyclerView : RecyclerView
-//    private lateinit var mBottomNavigationView: BottomNavigationView
     private lateinit var mTabLayout: TabLayout
     private lateinit var mViewPager2 : ViewPager2
     private lateinit var mFragmentAdapter: FragmentAdapter
@@ -39,27 +35,24 @@ class VRFragment(val mDataManager: DataManager) : Fragment(), VRMvpView {
         super.onViewCreated(view, savedInstanceState)
         mPresenter.onAttachView(this)
 
-//        mRecyclerView = view.findViewById(R.id.rv_vrlist)
-//        mBottomNavigationView = view.findViewById(R.id.bnv_vr)
-
-//        mBottomNavigationView.setOnNavigationItemSelectedListener {
-//            changeData(it.itemId)
-//            return@setOnNavigationItemSelectedListener true
-//        }
-
         mTabLayout = view.findViewById(R.id.tab_layout)
         mViewPager2 = view.findViewById(R.id.view_pager2)
 
         mFragmentAdapter = FragmentAdapter(fragmentManager, lifecycle)
         mViewPager2.adapter = mFragmentAdapter
 
-        mTabLayout.addTab(mTabLayout.newTab().setText("Image"))
-        mTabLayout.addTab(mTabLayout.newTab().setText("Videos"))
+        registerViewPages(mTabLayout, mViewPager2)
+    }
 
-        mTabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+    override fun registerViewPages(tabLayout: TabLayout, viewPager2: ViewPager2) {
+
+        tabLayout.addTab(tabLayout.newTab().setText("Image"))
+        tabLayout.addTab(tabLayout.newTab().setText("Videos"))
+
+        tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 if (tab != null) {
-                    mViewPager2.setCurrentItem(tab.position)
+                    viewPager2.currentItem = tab.position
                 }
             }
 
@@ -72,21 +65,11 @@ class VRFragment(val mDataManager: DataManager) : Fragment(), VRMvpView {
             }
         })
 
-        mViewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+        viewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
 
             override fun onPageSelected(position: Int) {
-                mTabLayout.selectTab(mTabLayout.getTabAt(position))
+                tabLayout.selectTab(mTabLayout.getTabAt(position))
             }
         })
-    }
-
-    override fun changeData(itemId: Int) {
-
-        when(itemId){
-            R.id.item_vrimg -> "Images Fragment"
-            R.id.item_vrvid -> "Videos Fragment"
-            else -> ""
-        }
-
     }
 }
