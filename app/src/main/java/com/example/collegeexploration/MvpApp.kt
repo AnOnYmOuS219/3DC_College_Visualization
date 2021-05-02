@@ -9,7 +9,6 @@ class MvpApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
         mDataManager = DataManager()
     }
 

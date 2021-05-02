@@ -1,4 +1,4 @@
-package com.example.collegeexploration.ui.vrimg
+package com.example.collegeexploration.ui.vrimg_list
 
 import com.example.collegeexploration.data.MediaItem
 import com.example.collegeexploration.ui.base.MvpView

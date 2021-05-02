@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Button
 import com.example.collegeexploration.R
 import com.example.collegeexploration.utils.CommonUtils
 import com.google.ar.core.Anchor
@@ -27,7 +28,8 @@ class ARFragment : Fragment(R.layout.fragment_a_r) {
         super.onViewCreated(view, savedInstanceState)
 
         mArCam = childFragmentManager.findFragmentById(R.id.arCameraArea) as ArFragment
-        mArCam.setOnTapArPlaneListener { hitResult, plane, motionEvent ->
+
+        mArCam.setOnTapArPlaneListener { hitResult, _, _ ->
             click++
             if (click == 1) {
                 val anchor: Anchor = hitResult.createAnchor()

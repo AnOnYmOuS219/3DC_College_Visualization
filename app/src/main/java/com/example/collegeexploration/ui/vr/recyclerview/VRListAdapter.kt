@@ -16,23 +16,9 @@ import org.greenrobot.eventbus.EventBus
 class VRListAdapter(diffCallback: DiffUtil.ItemCallback<MediaItem>) :
     ListAdapter<MediaItem, VRListAdapter.VRViewHolder>(diffCallback) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VRViewHolder {
-        return VRViewHolder.create(parent)
-    }
-
-    override fun onBindViewHolder(holder: VRViewHolder, position: Int) {
-        val mediaItem: MediaItem = getItem(position)
-        holder.bind(mediaItem)
-        holder.itemView.setOnClickListener { v ->
-            val vrEvent: VREvent = VREvent(mediaItem)
-            EventBus.getDefault().post(vrEvent)
-        }
-    }
-
-    fun getMediaItemAt(position: Int): MediaItem {
-        return getItem(position)
-    }
-
+    /**
+     * ListAdapter's DiffUtil ItemCallback class
+     */
     class MediaItemListDiff : DiffUtil.ItemCallback<MediaItem>() {
         override fun areItemsTheSame(oldItem: MediaItem, newItem: MediaItem): Boolean {
             return oldItem == newItem
@@ -43,18 +29,39 @@ class VRListAdapter(diffCallback: DiffUtil.ItemCallback<MediaItem>) :
         }
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VRViewHolder {
+        return VRViewHolder.create(parent)
+    }
+
+    override fun onBindViewHolder(holder: VRViewHolder, position: Int) {
+        val mediaItem: MediaItem = getItem(position)
+        holder.bind(mediaItem)
+        holder.itemView.setOnClickListener { _ ->
+            val vrEvent: VREvent = VREvent(mediaItem)
+            // post an EventBus event
+            EventBus.getDefault().post(vrEvent)
+        }
+    }
+
+    fun getMediaItemAt(position: Int): MediaItem {
+        return getItem(position)
+    }
+
     companion object {
         fun createDiffClass(): MediaItemListDiff = MediaItemListDiff()
     }
 
+    /**
+     * ViewHolder class
+     */
     class VRViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        // init views
         private val mTextViewTitle: TextView = itemView.findViewById(R.id.text_view_title)
-        private val mTextViewDescription: TextView =
-            itemView.findViewById(R.id.text_view_description)
-        private val mImageViewThumbnail: ImageView =
-            itemView.findViewById(R.id.image_view_thumbnail)
+        private val mTextViewDescription: TextView = itemView.findViewById(R.id.text_view_description)
+        private val mImageViewThumbnail: ImageView = itemView.findViewById(R.id.image_view_thumbnail)
 
+        // bind data with views
         fun bind(mediaItem: MediaItem) {
             mTextViewTitle.text = mediaItem.mediaTitle
             mTextViewDescription.text = mediaItem.mediaDescription
@@ -62,9 +69,9 @@ class VRListAdapter(diffCallback: DiffUtil.ItemCallback<MediaItem>) :
         }
 
         companion object {
+            // static function to create a VRViewHolder object
             fun create(parent: ViewGroup): VRViewHolder {
-                var view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.media_item, parent, false)
+                var view: View = LayoutInflater.from(parent.context).inflate(R.layout.media_item, parent, false)
                 return VRViewHolder(view)
             }
         }

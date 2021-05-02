@@ -1,4 +1,4 @@
-package com.example.collegeexploration.ui.vrimg
+package com.example.collegeexploration.ui.vrimg_list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.collegeexploration.R
 import com.example.collegeexploration.data.DataManager
 import com.example.collegeexploration.data.MediaItem
-import com.example.collegeexploration.ui.vr.VRMvpPresenter
-import com.example.collegeexploration.ui.vr.VRMvpView
 import com.example.collegeexploration.ui.vr.recyclerview.VRListAdapter
 
 class VRImgFragment(val mDataManager: DataManager) : Fragment(R.layout.fragment_v_r_img), VRImgMvpView {

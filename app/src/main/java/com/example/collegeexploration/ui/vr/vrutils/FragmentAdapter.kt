@@ -5,8 +5,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.collegeexploration.data.DataManager
-import com.example.collegeexploration.ui.vrimg.VRImgFragment
-import com.example.collegeexploration.ui.vrvid.VRVidFragment
+import com.example.collegeexploration.ui.vrimg_list.VRImgFragment
+import com.example.collegeexploration.ui.vrvid_list.VRVidFragment
 
 class FragmentAdapter(fragmentManger : FragmentManager?, lifecycle : Lifecycle, val dataManager: DataManager) :
     FragmentStateAdapter(fragmentManger!!, lifecycle) {
@@ -15,10 +15,9 @@ class FragmentAdapter(fragmentManger : FragmentManager?, lifecycle : Lifecycle, 
     }
 
     override fun createFragment(position: Int): Fragment {
-
         return when(position){
             0 -> VRImgFragment(dataManager)
-            1 -> VRVidFragment()
+            1 -> VRVidFragment(dataManager)
             else -> VRImgFragment(dataManager)
         }
     }

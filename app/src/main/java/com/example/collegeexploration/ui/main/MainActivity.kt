@@ -1,5 +1,6 @@
 package com.example.collegeexploration.ui.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +8,8 @@ import com.example.collegeexploration.MvpApp
 import com.example.collegeexploration.R
 import com.example.collegeexploration.data.DataManager
 import com.example.collegeexploration.events.VREvent
-import com.example.collegeexploration.ui.VRViewFragment
+import com.example.collegeexploration.ui.vrimage.VRImageActivity
+import com.example.collegeexploration.ui.vrvideo.VRVideoActivity
 import com.example.collegeexploration.ui.ar.ARFragment
 import com.example.collegeexploration.ui.vr.VRFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -29,11 +31,11 @@ class MainActivity : AppCompatActivity(), MainMvpView{
         mPresenter = MainPresenter(mDataManager)
         mPresenter.onAttachView(this)
 
+        // register EventBus
         EventBus.getDefault().register(this)
 
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.frame_fragment, ARFragment())
-            addToBackStack(null)
             commit()
         }
 
@@ -49,16 +51,27 @@ class MainActivity : AppCompatActivity(), MainMvpView{
         var fragment: Fragment = if(itemId == R.id.item_ar) ARFragment() else VRFragment(mDataManager)
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.frame_fragment, fragment)
-            addToBackStack(null)
             commit()
         }
     }
 
     @Subscribe
     fun handleVREvent(vrEvent: VREvent){
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.frame_fragment, VRViewFragment(vrEvent.mediaItem.mediaId))
-            commit()
+        if(vrEvent.mediaItem.mediaTagImg){
+//            supportFragmentManager.beginTransaction().apply {
+//                replace(R.id.frame_fragment, VRViewFragment(vrEvent.mediaItem.mediaId))
+//                commit()
+//            }
+            val intent: Intent = Intent(this, VRImageActivity::class.java).apply {
+                putExtra("mediaId", vrEvent.mediaItem.mediaId)
+            }
+            startActivity(intent)
+        }
+        else{
+            val intent: Intent = Intent(this, VRVideoActivity::class.java).apply {
+                putExtra("mediaId", vrEvent.mediaItem.mediaId)
+            }
+            startActivity(intent)
         }
     }
 
