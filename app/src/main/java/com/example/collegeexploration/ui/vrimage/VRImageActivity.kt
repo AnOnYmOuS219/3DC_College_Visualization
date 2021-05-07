@@ -6,6 +6,9 @@ import android.os.Bundle
 import com.example.collegeexploration.R
 import com.google.vr.sdk.widgets.pano.VrPanoramaView
 
+/**
+ * Shows an image in a VR format
+ */
 class VRImageActivity : AppCompatActivity() {
 
     private lateinit var vrPanoramaView: VrPanoramaView
@@ -15,13 +18,14 @@ class VRImageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_vr_image)
 
         vrPanoramaView = findViewById(R.id.panorama_view_image)
-        val mediaId = intent.getIntExtra("mediaId", 0)
+        val mediaId = intent.getIntExtra(getString(R.string.mediaId_extra_key), 0)
 
         val option = VrPanoramaView.Options().also {
             it.inputType = VrPanoramaView.Options.TYPE_MONO
         }
 
-        val bitmap = BitmapFactory.decodeResource(getResources(), mediaId)
+//        val bitmap = BitmapFactory.decodeResource(getResources(), mediaId)
+        val bitmap = BitmapFactory.decodeResource(resources, mediaId)
         vrPanoramaView.loadImageFromBitmap(bitmap, option)
     }
 }

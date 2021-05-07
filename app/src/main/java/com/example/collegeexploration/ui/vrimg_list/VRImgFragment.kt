@@ -10,6 +10,9 @@ import com.example.collegeexploration.data.DataManager
 import com.example.collegeexploration.data.MediaItem
 import com.example.collegeexploration.ui.vr.recyclerview.VRListAdapter
 
+/**
+ * VR Images List Fragment
+ */
 class VRImgFragment(val mDataManager: DataManager) : Fragment(R.layout.fragment_v_r_img), VRImgMvpView {
 
     private lateinit var mPresenter: VRImgPresenter<VRImgMvpView>

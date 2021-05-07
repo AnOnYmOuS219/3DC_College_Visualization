@@ -14,19 +14,17 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 
-
+/**
+ * Augmented Reality Fragment
+ */
 class ARFragment : Fragment(R.layout.fragment_a_r) {
 
-    companion object{
-        val TAG: String = ARFragment.javaClass.simpleName
-    }
-
     private lateinit var mArCam: ArFragment
-    private var click: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var click = 0
         mArCam = childFragmentManager.findFragmentById(R.id.arCameraArea) as ArFragment
 
         mArCam.setOnTapArPlaneListener { hitResult, _, _ ->
@@ -41,20 +39,24 @@ class ARFragment : Fragment(R.layout.fragment_a_r) {
                             modelRenderable -> addModel(anchor, modelRenderable)
                     }
                     .exceptionally{
-                        CommonUtils.printToast(context, "Something went wrong ..")
+                        CommonUtils.printToast(context, getString(R.string.error_ar))
                         return@exceptionally null
                     }
             }
         }
     }
 
-    private fun addModel(anchor: Anchor, modelRenderable: ModelRenderable) {
+    private fun addModel(anchor: Anchor, model: ModelRenderable) {
 
         val anchorNode = AnchorNode(anchor)
         anchorNode.setParent(mArCam.arSceneView.scene)
         val transformableNode = TransformableNode(mArCam.transformationSystem)
         transformableNode.setParent(anchorNode)
-        transformableNode.renderable = modelRenderable
+        transformableNode.renderable = model
         transformableNode.select()
+    }
+
+    companion object{
+        val LOG_TAG: String = ARFragment.javaClass.simpleName
     }
 }

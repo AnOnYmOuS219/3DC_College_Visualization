@@ -11,6 +11,9 @@ import com.example.collegeexploration.data.DataManager
 import com.example.collegeexploration.ui.vr.vrutils.FragmentAdapter
 import com.google.android.material.tabs.TabLayout
 
+/**
+ * VR Fragment
+ */
 class VRFragment(val mDataManager: DataManager) : Fragment(R.layout.fragment_v_r), VRMvpView {
 
     private lateinit var mPresenter: VRMvpPresenter<VRMvpView>
@@ -38,8 +41,8 @@ class VRFragment(val mDataManager: DataManager) : Fragment(R.layout.fragment_v_r
 
     override fun registerViewPages(tabLayout: TabLayout, viewPager2: ViewPager2) {
 
-        tabLayout.addTab(tabLayout.newTab().setText("Image"))
-        tabLayout.addTab(tabLayout.newTab().setText("Videos"))
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.tab_image)))
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.tab_video)))
 
         tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {

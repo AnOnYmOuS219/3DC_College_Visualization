@@ -16,6 +16,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
+/**
+ * Main Activity holds a layout of bottom navigation of AR & VR
+ * Hosts AR fragment & VR fragment
+ */
 class MainActivity : AppCompatActivity(), MainMvpView{
 
     private lateinit var mARVRBottomNavigationView: BottomNavigationView
@@ -26,8 +30,9 @@ class MainActivity : AppCompatActivity(), MainMvpView{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var mvpApp: MvpApp = applicationContext as MvpApp
+        val mvpApp: MvpApp = applicationContext as MvpApp
         mDataManager = mvpApp.getDataManager()
+        // MainPresenter
         mPresenter = MainPresenter(mDataManager)
         mPresenter.onAttachView(this)
 
@@ -63,13 +68,13 @@ class MainActivity : AppCompatActivity(), MainMvpView{
 //                commit()
 //            }
             val intent: Intent = Intent(this, VRImageActivity::class.java).apply {
-                putExtra("mediaId", vrEvent.mediaItem.mediaId)
+                putExtra(getString(R.string.mediaId_extra_key), vrEvent.mediaItem.mediaId)
             }
             startActivity(intent)
         }
         else{
             val intent: Intent = Intent(this, VRVideoActivity::class.java).apply {
-                putExtra("mediaId", vrEvent.mediaItem.mediaId)
+                putExtra(getString(R.string.mediaId_extra_key), vrEvent.mediaItem.mediaId)
             }
             startActivity(intent)
         }
