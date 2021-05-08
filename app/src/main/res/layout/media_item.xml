@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="@dimen/list_container_padding"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="@dimen/rv_image_size">
 
     <ImageView
         android:id="@+id/image_view_thumbnail"

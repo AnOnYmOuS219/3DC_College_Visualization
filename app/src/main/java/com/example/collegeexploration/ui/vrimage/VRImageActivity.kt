@@ -4,6 +4,7 @@ import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.collegeexploration.R
+import com.example.collegeexploration.utils.CommonUtils
 import com.google.vr.sdk.widgets.pano.VrPanoramaView
 
 /**
@@ -16,6 +17,8 @@ class VRImageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vr_image)
+
+        CommonUtils.hideStatusBar(window)
 
         vrPanoramaView = findViewById(R.id.panorama_view_image)
         val mediaId = intent.getIntExtra(getString(R.string.mediaId_extra_key), 0)

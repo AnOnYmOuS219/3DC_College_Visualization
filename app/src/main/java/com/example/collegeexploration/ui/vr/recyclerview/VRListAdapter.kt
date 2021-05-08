@@ -61,11 +61,13 @@ class VRListAdapter(diffCallback: DiffUtil.ItemCallback<MediaItem>) :
         private val mTextViewDescription: TextView = itemView.findViewById(R.id.text_view_description)
         private val mImageViewThumbnail: ImageView = itemView.findViewById(R.id.image_view_thumbnail)
 
-        // bind data with views
+        // binds data with views
         fun bind(mediaItem: MediaItem) {
             mTextViewTitle.text = mediaItem.mediaTitle
             mTextViewDescription.text = mediaItem.mediaDescription
             mImageViewThumbnail.setImageResource(mediaItem.mediaId)
+            if(mImageViewThumbnail.drawable == null)
+                mImageViewThumbnail.visibility = View.GONE
         }
 
         companion object {

@@ -55,8 +55,4 @@ class ARFragment : Fragment(R.layout.fragment_a_r) {
         transformableNode.renderable = model
         transformableNode.select()
     }
-
-    companion object{
-        val LOG_TAG: String = ARFragment.javaClass.simpleName
-    }
 }

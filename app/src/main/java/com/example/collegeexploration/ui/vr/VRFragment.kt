@@ -12,7 +12,7 @@ import com.example.collegeexploration.ui.vr.vrutils.FragmentAdapter
 import com.google.android.material.tabs.TabLayout
 
 /**
- * VR Fragment
+ * Virtual Reality Fragment
  */
 class VRFragment(val mDataManager: DataManager) : Fragment(R.layout.fragment_v_r), VRMvpView {
 
@@ -33,7 +33,7 @@ class VRFragment(val mDataManager: DataManager) : Fragment(R.layout.fragment_v_r
         mTabLayout = view.findViewById(R.id.tab_layout)
         mViewPager2 = view.findViewById(R.id.view_pager2)
 
-        mFragmentAdapter = FragmentAdapter(fragmentManager, lifecycle, mDataManager)
+        mFragmentAdapter = FragmentAdapter(requireActivity().supportFragmentManager, lifecycle, mDataManager)
         mViewPager2.adapter = mFragmentAdapter
 
         registerViewPages(mTabLayout, mViewPager2)

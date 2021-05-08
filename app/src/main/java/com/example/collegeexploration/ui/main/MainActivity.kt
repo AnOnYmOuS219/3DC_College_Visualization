@@ -12,6 +12,7 @@ import com.example.collegeexploration.ui.vrimage.VRImageActivity
 import com.example.collegeexploration.ui.vrvideo.VRVideoActivity
 import com.example.collegeexploration.ui.ar.ARFragment
 import com.example.collegeexploration.ui.vr.VRFragment
+import com.example.collegeexploration.utils.CommonUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity(), MainMvpView{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        CommonUtils.hideStatusBar(window)
 
         val mvpApp: MvpApp = applicationContext as MvpApp
         mDataManager = mvpApp.getDataManager()

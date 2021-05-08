@@ -2,9 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/item_ar"
+        android:icon="@drawable/ic_ar"
         android:title="AR"/>
 
     <item android:id="@+id/item_vr"
-        android:title="VR"/>
+        android:icon="@drawable/ic_vr"
+        android:title="VR" />
 
 </menu>

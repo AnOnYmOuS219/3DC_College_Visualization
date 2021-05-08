@@ -29,6 +29,8 @@ class VRVideoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vr_video)
 
+        CommonUtils.hideStatusBar(window)
+
         mPlayerView = findViewById(R.id.exo_player_vr)
 
         (mPlayerView.videoSurfaceView as SphericalGLSurfaceView)
