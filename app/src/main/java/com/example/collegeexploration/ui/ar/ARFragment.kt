@@ -32,13 +32,13 @@ class ARFragment : Fragment(R.layout.fragment_a_r) {
             if (click == 1) {
                 val anchor: Anchor = hitResult.createAnchor()
                 ModelRenderable.builder()
-                    .setSource(activity, R.raw.pine)
+                    .setSource(activity, R.raw.progress)
                     .setIsFilamentGltf(true)
                     .build()
-                    .thenAccept {
-                            modelRenderable -> addModel(anchor, modelRenderable)
+                    .thenAccept { modelRenderable ->
+                        addModel(anchor, modelRenderable)
                     }
-                    .exceptionally{
+                    .exceptionally {
                         CommonUtils.printToast(context, getString(R.string.error_ar))
                         return@exceptionally null
                     }
@@ -51,6 +51,9 @@ class ARFragment : Fragment(R.layout.fragment_a_r) {
         val anchorNode = AnchorNode(anchor)
         anchorNode.setParent(mArCam.arSceneView.scene)
         val transformableNode = TransformableNode(mArCam.transformationSystem)
+        // scale
+        transformableNode.scaleController.maxScale = 0.02f
+        transformableNode.scaleController.minScale = 0.01f
         transformableNode.setParent(anchorNode)
         transformableNode.renderable = model
         transformableNode.select()
