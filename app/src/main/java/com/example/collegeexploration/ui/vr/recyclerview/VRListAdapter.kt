@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.collegeexploration.R
 import com.example.collegeexploration.data.MediaItem
 import com.example.collegeexploration.events.VREvent
+import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.shape.CornerFamily
 import org.greenrobot.eventbus.EventBus
 
 class VRListAdapter(diffCallback: DiffUtil.ItemCallback<MediaItem>) :
@@ -59,12 +61,16 @@ class VRListAdapter(diffCallback: DiffUtil.ItemCallback<MediaItem>) :
         // init views
         private val mTextViewTitle: TextView = itemView.findViewById(R.id.text_view_title)
         private val mTextViewDescription: TextView = itemView.findViewById(R.id.text_view_description)
-        private val mImageViewThumbnail: ImageView = itemView.findViewById(R.id.image_view_thumbnail)
+        private val mImageViewThumbnail: ShapeableImageView = itemView.findViewById(R.id.image_view_thumbnail)
 
         // binds data with views
         fun bind(mediaItem: MediaItem) {
             mTextViewTitle.text = mediaItem.mediaTitle
             mTextViewDescription.text = mediaItem.mediaDescription
+            mImageViewThumbnail.shapeAppearanceModel = mImageViewThumbnail.shapeAppearanceModel
+                .toBuilder()
+                .setAllCorners(CornerFamily.ROUNDED, 35F)
+                .build()
             mImageViewThumbnail.setImageResource(mediaItem.mediaId)
             if(mImageViewThumbnail.drawable == null)
                 mImageViewThumbnail.visibility = View.GONE
