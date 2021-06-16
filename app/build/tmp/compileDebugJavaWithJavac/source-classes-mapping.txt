@@ -1,0 +1,2 @@
+com/example/collegeexploration/BuildConfig.java
+ com.example.collegeexploration.BuildConfig
