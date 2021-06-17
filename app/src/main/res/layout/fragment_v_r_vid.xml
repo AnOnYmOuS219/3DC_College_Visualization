@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/whitesmoke"
     tools:context=".ui.vrvid_list.VRVidFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_vrvid"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/whitesmoke"/>
+        android:layout_height="wrap_content"/>
 
 </FrameLayout>

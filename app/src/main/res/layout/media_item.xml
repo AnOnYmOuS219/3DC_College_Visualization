@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="124dp"
-    app:cardCornerRadius="20dp"
     android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
     android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp">
+    android:layout_marginRight="16dp"
+    android:layout_marginBottom="8dp"
+    android:elevation="16dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -37,17 +39,27 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Title" />
 
+        <View
+            android:id="@+id/divider"
+            android:layout_marginLeft="8dp"
+            android:layout_width="20dp"
+            android:layout_height="2dp"
+            android:background="@color/purple_500"
+            app:layout_constraintStart_toEndOf="@id/image_view_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/text_view_title" />
+
         <TextView
             android:id="@+id/text_view_description"
             android:layout_width="@dimen/list_tv_width"
             android:layout_height="@dimen/description_height"
             android:ellipsize="end"
+            android:paddingTop="8dp"
             android:paddingLeft="@dimen/title_padding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toEndOf="@id/image_view_thumbnail"
-            app:layout_constraintTop_toBottomOf="@id/text_view_title"
+            app:layout_constraintTop_toBottomOf="@id/divider"
             tools:text="Sample description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

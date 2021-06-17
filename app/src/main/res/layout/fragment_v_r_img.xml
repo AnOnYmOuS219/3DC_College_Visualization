@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/whitesmoke"
     tools:context=".ui.vrimg_list.VRImgFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_vrimg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/whitesmoke"/>
+        android:layout_height="wrap_content"/>
 
 </FrameLayout>

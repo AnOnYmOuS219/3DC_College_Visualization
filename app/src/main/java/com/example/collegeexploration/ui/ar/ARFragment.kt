@@ -32,7 +32,7 @@ class ARFragment : Fragment(R.layout.fragment_a_r) {
             if (click == 1) {
                 val anchor: Anchor = hitResult.createAnchor()
                 ModelRenderable.builder()
-                    .setSource(activity, R.raw.progress)
+                    .setSource(activity, R.raw.college)
                     .setIsFilamentGltf(true)
                     .build()
                     .thenAccept { modelRenderable ->
