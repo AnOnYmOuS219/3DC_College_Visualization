@@ -8,6 +8,7 @@ import com.example.collegeexploration.MvpApp
 import com.example.collegeexploration.R
 import com.example.collegeexploration.data.DataManager
 import com.example.collegeexploration.events.VREvent
+import com.example.collegeexploration.events.VREventFirebase
 import com.example.collegeexploration.ui.vrimage.VRImageActivity
 import com.example.collegeexploration.ui.vrvideo.VRVideoActivity
 import com.example.collegeexploration.ui.ar.ARFragment
@@ -21,7 +22,7 @@ import org.greenrobot.eventbus.Subscribe
  * Main Activity holds a layout of bottom navigation of AR & VR
  * Hosts AR fragment & VR fragment
  */
-class MainActivity : AppCompatActivity(), MainMvpView{
+class MainActivity : AppCompatActivity(), MainMvpView {
 
     private lateinit var mARVRBottomNavigationView: BottomNavigationView
     private lateinit var mPresenter: MainPresenter<MainMvpView>
@@ -56,7 +57,8 @@ class MainActivity : AppCompatActivity(), MainMvpView{
 
     override fun changeFragment(itemId: Int) {
 
-        var fragment: Fragment = if(itemId == R.id.item_ar) ARFragment() else VRFragment(mDataManager)
+        var fragment: Fragment =
+            if (itemId == R.id.item_ar) ARFragment() else VRFragment(mDataManager)
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.frame_fragment, fragment)
             commit()
@@ -64,8 +66,8 @@ class MainActivity : AppCompatActivity(), MainMvpView{
     }
 
     @Subscribe
-    fun handleVREvent(vrEvent: VREvent){
-        if(vrEvent.mediaItem.mediaTagImg){
+    fun handleVREvent(vrEvent: VREvent) {
+        if (vrEvent.mediaItem.mediaTagImg) {
 //            supportFragmentManager.beginTransaction().apply {
 //                replace(R.id.frame_fragment, VRViewFragment(vrEvent.mediaItem.mediaId))
 //                commit()
@@ -74,13 +76,21 @@ class MainActivity : AppCompatActivity(), MainMvpView{
                 putExtra(getString(R.string.mediaId_extra_key), vrEvent.mediaItem.mediaId)
             }
             startActivity(intent)
-        }
-        else{
+        } else {
             val intent: Intent = Intent(this, VRVideoActivity::class.java).apply {
                 putExtra(getString(R.string.mediaId_extra_key), vrEvent.mediaItem.mediaId)
             }
             startActivity(intent)
         }
+    }
+
+    @Subscribe
+    fun handleVREvent(vrEvent: VREventFirebase) {
+
+        val intent: Intent = Intent(this, VRImageActivity::class.java).apply {
+            putExtra(getString(R.string.mediaId_extra_key), vrEvent.mediaItem.url)
+        }
+        startActivity(intent)
     }
 
     override fun onDestroy() {
