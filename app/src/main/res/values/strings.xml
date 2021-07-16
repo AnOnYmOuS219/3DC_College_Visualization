@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">College Exploration</string>
+    <string name="app_name">3DC</string>
     <string name="title_activity_v_r_video">VRVideoActivity</string>
     <string name="error_ar">Something went wrong ..</string>
     <string name="mediaId_extra_key">mediaId</string>

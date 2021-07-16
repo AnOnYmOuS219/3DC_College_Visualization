@@ -6,11 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.collegeexploration.R
-import com.example.collegeexploration.data.MediaItem
 import com.example.collegeexploration.data.MediaItemFireBase
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.shape.CornerFamily
-import com.squareup.picasso.Picasso
 
 class MediaFirebaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     // init views

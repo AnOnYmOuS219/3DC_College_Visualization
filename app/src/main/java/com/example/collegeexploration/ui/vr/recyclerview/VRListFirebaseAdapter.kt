@@ -8,9 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.collegeexploration.R
-import com.example.collegeexploration.data.MediaItem
 import com.example.collegeexploration.data.MediaItemFireBase
-import com.example.collegeexploration.events.VREvent
 import com.example.collegeexploration.events.VREventFirebase
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.shape.CornerFamily
@@ -75,8 +73,10 @@ class VRListFirebaseAdapter(diffCallback: DiffUtil.ItemCallback<MediaItemFireBas
                 .build()
 //            mImageViewThumbnail.setImageResource(mediaItem.mediaId)
             Picasso.get().load(mediaItem.url).into(mImageViewThumbnail)
-            if(mImageViewThumbnail.drawable == null)
+            if(mediaItem.url == null)
                 mImageViewThumbnail.visibility = View.GONE
+//            if(mImageViewThumbnail.drawable == null)
+//                mImageViewThumbnail.visibility = View.GONE
         }
 
         companion object {

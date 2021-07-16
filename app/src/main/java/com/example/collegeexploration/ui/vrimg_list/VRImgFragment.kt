@@ -1,7 +1,6 @@
 package com.example.collegeexploration.ui.vrimg_list
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,12 +9,10 @@ import com.example.collegeexploration.R
 import com.example.collegeexploration.data.DataManager
 import com.example.collegeexploration.data.MediaItem
 import com.example.collegeexploration.data.MediaItemFireBase
-import com.example.collegeexploration.ui.vr.recyclerview.MediaFirebaseViewHolder
-import com.example.collegeexploration.ui.vr.recyclerview.VRListAdapter
 import com.example.collegeexploration.ui.vr.recyclerview.VRListFirebaseAdapter
 import com.example.collegeexploration.utils.CommonUtils
-import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.*
+import com.wang.avi.AVLoadingIndicatorView
 
 /**
  * VR Images List Fragment
@@ -33,11 +30,13 @@ class VRImgFragment(val mDataManager: DataManager) : Fragment(R.layout.fragment_
         mPresenter = VRImgPresenter(mDataManager)
         mPresenter.onAttachView(this)
         mRecyclerView = view.findViewById(R.id.recycler_view_vrimg)
+        val progressBar = view.findViewById<AVLoadingIndicatorView>(R.id.avi)
+        progressBar.show()
 
         val firebaseDb = FirebaseDatabase.getInstance()
         val dbRef = firebaseDb.getReference("media")
         CommonUtils.printLog("peaches", "dbref = " + dbRef)
-        dbRef.setValue("hi")
+//        dbRef.setValue("hi")
 //        val query = dbRef!!.limitToLast(8)
 
 //        val firebaseRVAdapter = object : FirebaseRecyclerAdapter<MediaItemFireBase, MediaFirebaseViewHolder>(
@@ -63,6 +62,7 @@ class VRImgFragment(val mDataManager: DataManager) : Fragment(R.layout.fragment_
                         mMediaItems.add(it)
                     }
                 }
+                progressBar.hide()
                 mVRListAdapter = VRListFirebaseAdapter(VRListFirebaseAdapter.createDiffClass())
                 settingUpRecyclerViewv2(mMediaItems)
             }
