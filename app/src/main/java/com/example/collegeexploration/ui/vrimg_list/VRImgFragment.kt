@@ -36,6 +36,8 @@ class VRImgFragment(val mDataManager: DataManager) : Fragment(R.layout.fragment_
 
         val firebaseDb = FirebaseDatabase.getInstance()
         val dbRef = firebaseDb.getReference("media")
+        CommonUtils.printLog("peaches", "dbref = " + dbRef)
+        dbRef.setValue("hi")
 //        val query = dbRef!!.limitToLast(8)
 
 //        val firebaseRVAdapter = object : FirebaseRecyclerAdapter<MediaItemFireBase, MediaFirebaseViewHolder>(
@@ -54,6 +56,7 @@ class VRImgFragment(val mDataManager: DataManager) : Fragment(R.layout.fragment_
         dbRef.addValueEventListener(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
+                System.out.println("hi snapshot = " + snapshot)
                 for(item in snapshot.children) {
                     val mediaItem = item.getValue(MediaItemFireBase::class.java)
                     mediaItem?.let{
