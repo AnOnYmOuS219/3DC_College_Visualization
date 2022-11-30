@@ -7,6 +7,7 @@ We all have experienced the phase of being locked at our homes with zero social 
 This being a basis of our motivation to research and build a computationally stable application which can be used by students to view their campus sitting at home.
 
 <img src="https://drive.google.com/uc?export=view&id=1-9K8vvHcg28RSNjGj0wlboxa6ySaT21b" width="400" /><img src="https://drive.google.com/uc?export=view&id=11JVQIwkpmkWeFST-oU_fOodN2gaPUD9K" width="400" />
+
 <img src="https://drive.google.com/uc?export=view&id=1GtvMQJaWDkvy85jcjS7l4wUyLhaSXfq3" height="300" /><img src="https://drive.google.com/uc?export=view&id=1FhvFbG4d81Fbx85r-FaiRAEW81QA9R0w" width="500" />
 
 ### Tech used
