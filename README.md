@@ -6,9 +6,9 @@ We all have experienced the phase of being locked at our homes with zero social 
 
 This being a basis of our motivation to research and build a computationally stable application which can be used by students to view their campus sitting at home.
 
-![AR Feature](https://drive.google.com/drive/u/2/folders/1fzmIfQ3ZfAZuNQVIm239M2bYUCAoLo3l)
-![VR Feature](https://drive.google.com/drive/u/2/folders/1fzmIfQ3ZfAZuNQVIm239M2bYUCAoLo3l)
-![App](https://drive.google.com/drive/u/2/folders/1fzmIfQ3ZfAZuNQVIm239M2bYUCAoLo3l)
+![AR Feature](https://drive.google.com/uc?export=view&id=1-9K8vvHcg28RSNjGj0wlboxa6ySaT21b)
+![VR Feature](https://drive.google.com/uc?export=view&id=11JVQIwkpmkWeFST-oU_fOodN2gaPUD9K)
+![App](https://drive.google.com/uc?export=view&id=1GtvMQJaWDkvy85jcjS7l4wUyLhaSXfq3)
 
 ### Tech used
 
